@@ -20,6 +20,13 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  sightings: PropTypes.array,
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+  fetchSightings: PropTypes.func
+}
+
 export const mapStateToProps = (state) => ({ 
   sightings: state.sightings,
   isLoading: state.isLoading,
