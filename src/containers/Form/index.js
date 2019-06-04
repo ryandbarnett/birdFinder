@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import fetchSightings from '../../thunks/fetchSightings/';
 import { names } from '../../utils/data.js';
 import TextInput from 'react-autocomplete-input';
+import PropTypes from 'prop-types';
 import 'react-autocomplete-input/dist/bundle.css';
 
 class Form extends Component {
@@ -55,6 +56,13 @@ class Form extends Component {
       </form>
     );
   }
+}
+
+Form.propTypes = {
+  sightings: PropTypes.array,
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+  fetchSightings: PropTypes.func
 }
 
 export const mapStateToProps = (state) => ({ 
