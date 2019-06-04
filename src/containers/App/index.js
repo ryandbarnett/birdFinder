@@ -1,14 +1,16 @@
+import { setSightings } from '../../actions'
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import './App.css';
 import { EBIRD_API_KEY } from '../../utils/apiKeys.js';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      sightings: []
-    }
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     sightings: []
+  //   }
+  // }
 
   componentDidMount = async () => {
     const options = {
@@ -21,7 +23,8 @@ class App extends Component {
 
     const response = await fetch(url, options);
     const sightings = await response.json();
-    this.setState({sightings})
+    // this.setState({sightings})
+    this.props.setSightings(sightings);
   }
 
   render() {
@@ -33,4 +36,17 @@ class App extends Component {
   }
 }
 
-export default App;
+export const mapStateToProps = (state) => ({ 
+  sightings: state.sightings 
+})
+
+export const mapDispatchToProps=(dispatch) => {
+  return {
+    setSightings: (sightings) => {
+      dispatch(setSightings(sightings))
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
