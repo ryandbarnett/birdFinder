@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import fetchSightings from '../../thunks/fetchSightings/';
-import { names } from '../../utils/data.js';
+import { birds } from '../../utils/data.js';
 import TextInput from 'react-autocomplete-input';
 import PropTypes from 'prop-types';
 import 'react-autocomplete-input/dist/bundle.css';
@@ -21,11 +21,8 @@ class Form extends Component {
     let { value } = this.state.species;
     value = value.trim();
     let speciesCode;
-    if (names.includes(value)) {
-      speciesCode = this.props.sightings.find(sighting => {
-        const {comName, sciName} = sighting;
-        return comName === value || sciName === value;
-      }).speciesCode;
+    if (Object.keys(birds).includes(value)) {
+      speciesCode = birds[value].speciesCode;
     }
 
     const baseUrl = 'https://ebird.org/ws2.0/data/obs/US-CO/recent';
@@ -50,7 +47,7 @@ class Form extends Component {
           id='species-input' 
           matchAny={true} 
           trigger={''} 
-          options={names} 
+          options={Object.keys(birds)} 
         />
         <button type='submit'>Submit</button>
       </form>
