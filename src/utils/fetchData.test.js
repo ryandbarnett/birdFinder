@@ -1,5 +1,5 @@
-import fetchData from './fetchData.js';
-import { EBIRD_API_KEY } from './apiKeys.js';
+import fetchData from './fetchData';
+import { EBIRD_API_KEY } from './apiKeys';
 
 describe('fetchData', () => {
   let mockUrl;
@@ -12,7 +12,7 @@ describe('fetchData', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: true,
-        json: () => Promise.resolve(mockResponse)
+        json: () => Promise.resolve(mockResponse),
       });
     });
   });
@@ -23,9 +23,9 @@ describe('fetchData', () => {
       {
         method: 'GET',
         headers: {
-          'x-ebirdapitoken': EBIRD_API_KEY
+          'x-ebirdapitoken': EBIRD_API_KEY,
         }
-      }
+      },
     ];
 
     fetchData(mockUrl);
@@ -43,10 +43,10 @@ describe('fetchData', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false,
-        statusText: 'Error Message'
+        statusText: 'Error Message',
       });
     });
 
-    await expect(fetchData()).rejects.toEqual(Error('Error Message'))
+    await expect(fetchData()).rejects.toEqual(Error('Error Message'));
   });
 });
