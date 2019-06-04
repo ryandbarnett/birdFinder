@@ -1,27 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import './App.css';
-import { EBIRD_API_KEY } from '../../utils/apiKeys.js';
+import fetchSightings from '../../thunks/fetchSightings/';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      sightings: []
-    }
-  }
 
-  componentDidMount = async () => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'x-ebirdapitoken': EBIRD_API_KEY
-      }
-    }
+  componentDidMount = () => {
     const url = 'https://ebird.org/ws2.0/data/obs/US-CO/recent'
-
-    const response = await fetch(url, options);
-    const sightings = await response.json();
-    this.setState({sightings})
+    this.props.fetchSightings(url);
   }
 
   render() {
@@ -33,4 +19,16 @@ class App extends Component {
   }
 }
 
-export default App;
+export const mapStateToProps = (state) => ({ 
+  sightings: state.sightings,
+  isLoading: state.isLoading,
+  error: state.error
+});
+
+export const mapDispatchToProps=(dispatch) => ({
+  fetchSightings: (url) => {
+    dispatch(fetchSightings(url))
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
