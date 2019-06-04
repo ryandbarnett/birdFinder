@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
 import fetchSightings from '../../thunks/fetchSightings/';
+import PropTypes from 'prop-types';
 
 class App extends Component {
 
@@ -17,6 +18,13 @@ class App extends Component {
       </div>
     );
   }
+}
+
+App.propTypes = {
+  sightings: PropTypes.array,
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+  fetchSightings: PropTypes.func
 }
 
 export const mapStateToProps = (state) => ({ 
