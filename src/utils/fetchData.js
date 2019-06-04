@@ -8,7 +8,7 @@ const fetchData = async (url) => {
     }
   }
   const response = await fetch(url, options);
-  !response.ok && throw Error(response.statusText);
+  if (!response.ok) throw Error(response.statusText);
   return await response.json();
 }
 
