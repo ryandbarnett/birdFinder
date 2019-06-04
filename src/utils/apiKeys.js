@@ -1,0 +1,1 @@
+export const EBIRD_API_KEY = 'l85og7vqmpu7';
