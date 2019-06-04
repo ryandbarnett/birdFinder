@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
-import { EBIRD_API_KEY } from '../../utils/apiKeys.js';
 import fetchSightings from '../../thunks/fetchSightings/';
 
 class App extends Component {
@@ -24,15 +23,12 @@ export const mapStateToProps = (state) => ({
   sightings: state.sightings,
   isLoading: state.isLoading,
   error: state.error
-})
+});
 
-export const mapDispatchToProps=(dispatch) => {
-  return {
-    fetchSightings: (url) => {
-      dispatch(fetchSightings(url))
-    }
+export const mapDispatchToProps=(dispatch) => ({
+  fetchSightings: (url) => {
+    dispatch(fetchSightings(url))
   }
-}
-
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,3 +1,5 @@
+import { EBIRD_API_KEY } from './apiKeys.js';
+
 const fetchData = async (url) => {
   const options = {
     method: 'GET',
