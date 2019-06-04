@@ -6,7 +6,7 @@ import fetchSightings from '../../thunks/fetchSightings/';
 
 class App extends Component {
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const url = 'https://ebird.org/ws2.0/data/obs/US-CO/recent'
     this.props.fetchSightings(url);
   }
