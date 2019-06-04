@@ -2,22 +2,22 @@ import isLoading from './';
 
 describe('isLoadingReducer', () => {
   it('should return the initial state', () => {
-    const expected = false
+    const expected = false;
 
-    const result = isLoading(undefined, {})
+    const result = isLoading(undefined, {});
 
-    expect(result).toEqual(expected)
+    expect(result).toEqual(expected);
   });
 
   it('should return a boolean if the action type is IS_LOADING', () => {
-    const expected = true
+    const expected = true;
     const action = {
       type: 'IS_LOADING',
       isLoading: expected
-    }
+    };
 
-    const result = isLoading(undefined, action)
+    const result = isLoading(undefined, action);
 
-    expect(result).toEqual(expected)
+    expect(result).toEqual(expected);
   });
 });
