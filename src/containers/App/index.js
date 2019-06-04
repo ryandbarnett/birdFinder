@@ -3,14 +3,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
 import { EBIRD_API_KEY } from '../../utils/apiKeys.js';
+import fetchData from '../../utils/fetchData.js';
 
 class App extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     sightings: []
-  //   }
-  // }
 
   componentDidMount = async () => {
     const options = {
@@ -20,10 +15,7 @@ class App extends Component {
       }
     }
     const url = 'https://ebird.org/ws2.0/data/obs/US-CO/recent'
-
-    const response = await fetch(url, options);
-    const sightings = await response.json();
-    // this.setState({sightings})
+    const sightings = await fetchData(url, options);
     this.props.setSightings(sightings);
   }
 
