@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import fetchSightings from '../../thunks/fetchSightings/';
 import { names } from '../../utils/data.js';
 import { EBIRD_API_KEY } from '../../utils/apiKeys.js';
 import TextInput from 'react-autocomplete-input';
@@ -15,7 +17,7 @@ class Form extends Component {
       return acc;
     }, {});
 
-    if(names.includes(inputs.species)) {
+    if (names.includes(inputs.species)) {
       speciesCode = this.state.sightings.reduce((acc, sighting) => {
         const {comName, sciName} = sighting;
         if (comName === inputs.species || sciName === inputs.species) {
@@ -24,18 +26,9 @@ class Form extends Component {
         return acc;
       }, '')
     }
-    const options = {
-      method: 'GET',
-      headers: {
-        'x-ebirdapitoken': EBIRD_API_KEY
-      }
-    }
     const baseUrl = 'https://ebird.org/ws2.0/data/obs/US-CO/recent/'
     const url = baseUrl + speciesCode + '?maxResults=200';
-    
-    const response = await fetch(url, options);
-    const sightings = await response.json();
-    this.setState({sightings})
+    this.props.fetchSightings(url);
   }
   
   render() {
@@ -56,4 +49,10 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export const mapDispatchToProps=(dispatch) => ({
+  fetchSightings: (url) => {
+    dispatch(fetchSightings(url))
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Form);
