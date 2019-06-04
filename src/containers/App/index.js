@@ -8,7 +8,7 @@ import Form from '../Form';
 class App extends Component {
 
   componentDidMount = () => {
-    const url = 'https://ebird.org/ws2.0/data/obs/US-CO/recent';
+    const url = 'https://ebird.org/ws2.0/data/obs/US-CO/recent?maxResults=100';
     this.props.fetchSightings(url);
   }
 
