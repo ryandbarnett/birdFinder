@@ -1,51 +1,53 @@
 import React, { Component } from 'react';
-import { names } from './data.js';
+import { connect } from 'react-redux'
+import fetchSightings from '../../thunks/fetchSightings/';
+import { birds } from '../../utils/data.js';
+import TextInput from 'react-autocomplete-input';
+import PropTypes from 'prop-types';
+import 'react-autocomplete-input/dist/bundle.css';
 
 class Form extends Component {
-  handleSubmit = async (e) => {
-    let speciesCode;
-    e.preventDefault();
-    const inputs = Array.from(e.target.elements).reduce((acc, element) => {
-      if (element.name) {
-        acc[element.name] = element.value.trim();
+  constructor() {
+    super()
+    this.state = {
+      species: {
+        value: ''
       }
-      return acc;
-    }, {});
+    }
+  }
 
-    if(names.includes(inputs.species)) {
-      speciesCode = this.state.sightings.reduce((acc, sighting) => {
-        const {comName, sciName} = sighting;
-        if (comName === inputs.species || sciName === inputs.species) {
-          acc = sighting.speciesCode;
-        }
-        return acc;
-      }, '')
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    let { value } = this.state.species;
+    value = value.trim();
+    let speciesCode;
+    if (Object.keys(birds).includes(value)) {
+      speciesCode = birds[value].speciesCode;
     }
-    const options = {
-      method: 'GET',
-      headers: {
-        'x-ebirdapitoken': EBIRD_API_KEY
-      }
-    }
-    const baseUrl = 'https://ebird.org/ws2.0/data/obs/US-CO/recent/'
-    const url = baseUrl + speciesCode + '?maxResults=200';
-    
-    const response = await fetch(url, options);
-    const sightings = await response.json();
-    this.setState({sightings})
+
+    const baseUrl = 'https://ebird.org/ws2.0/data/obs/US-CO/recent';
+    const max = '100';
+    const url = !speciesCode ? `${baseUrl}${max}` : `${baseUrl}/${speciesCode}?maxResults=${max}`;
+    this.props.fetchSightings(url);
+  }
+
+  handleChange = (e) => {
+    this.setState({species: {value: e}});
   }
   
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <TextInput 
+          onChange={this.handleChange}
           name='species'
           Component='input' 
-          placeholder='Species' 
+          placeholder='Species'
+          value={this.state.species.value} 
           id='species-input' 
           matchAny={true} 
           trigger={''} 
-          options={names} 
+          options={Object.keys(birds)} 
         />
         <button type='submit'>Submit</button>
       </form>
@@ -53,4 +55,23 @@ class Form extends Component {
   }
 }
 
-export default Form;
+Form.propTypes = {
+  sightings: PropTypes.array,
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+  fetchSightings: PropTypes.func
+}
+
+export const mapStateToProps = (state) => ({ 
+  sightings: state.sightings,
+  isLoading: state.isLoading,
+  error: state.error
+});
+
+export const mapDispatchToProps=(dispatch) => ({
+  fetchSightings: (url) => {
+    dispatch(fetchSightings(url))
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
