@@ -10,7 +10,7 @@
 
 h1 {
   color: #EB7411;
-  font-family: 'Nothing You Could Do', cursive;
+  font-family: 'Nothing You Could Do', cursive !important;
   font-size: 48px;
   margin: 0;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
