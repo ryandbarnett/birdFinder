@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "google-map-react": "^1.1.4",
+    "markerwithlabel": "^2.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-autocomplete-input": "^1.0.10",
