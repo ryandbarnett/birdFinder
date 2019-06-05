@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Form from '../Form';
 import GoogleMap from '../GoogleMap';
 import Header from '../../components/Header';
+import { Route, NavLink } from 'react-router-dom';
 
 class App extends Component {
 
@@ -16,16 +17,18 @@ class App extends Component {
   }
 
   render() {
-    const {isLoading} = this.props;
-    const loadingImg = isLoading && <div className='loading-container'><h1>Loading...</h1><img src={loading} alt='map loading' /></div>
-    const form = !isLoading && <Form />;
-    const map = !isLoading && <GoogleMap />;
+    const {isLoading, error} = this.props;
+    const errorMsg = error && <div className='error'><h1>Error: {error}</h1></div>
+    const loadingImg = isLoading && !error && <div className='loading-container'><h1>Loading...</h1><img src={loading} alt='map loading' /></div>
+    const form = !isLoading && !error && <Route exact path='/' component={ Form } />;
+    const map = !isLoading && !error && <Route exact path='/' component={ GoogleMap } />;
     return (
       <div className="App">
         <Header />
         {form}
         {map}
         {loadingImg}
+        {errorMsg}
       </div>
     );
   }
