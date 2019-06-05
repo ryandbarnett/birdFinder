@@ -5,6 +5,7 @@ import birds from '../../utils/data';
 import key from '../../utils/mapKey';
 import './Map.css';
 import { Route, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class GoogleMap extends Component {
   constructor() {
@@ -85,10 +86,16 @@ class GoogleMap extends Component {
   }
 }
 
+GoogleMap.propTypes = {
+  sightings: PropTypes.array,
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+}
+
 export const mapStateToProps = (state) => ({ 
   sightings: state.sightings,
   isLoading: state.isLoading,
-  error: state.error
+  error: state.error,
 });
 
 export default connect(mapStateToProps)(GoogleMap);
