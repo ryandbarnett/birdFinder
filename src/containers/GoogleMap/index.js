@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import GoogleMapReact from 'google-map-react';
 import birds from '../../utils/data';
 import key from '../../utils/mapKey';
+import './Map.css';
 
 class GoogleMap extends Component {
   constructor() {
@@ -69,7 +70,7 @@ class GoogleMap extends Component {
     const center = {lat: 39.73, lng: -104.99};
 
     return (
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div className='Map'>
         <GoogleMapReact
           bootstrapURLKeys={{ key }}
           defaultCenter={center}
