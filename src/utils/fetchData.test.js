@@ -24,7 +24,7 @@ describe('fetchData', () => {
         method: 'GET',
         headers: {
           'x-ebirdapitoken': EBIRD_API_KEY,
-        }
+        },
       },
     ];
 
