@@ -10,7 +10,7 @@ import Header from '../../components/Header';
 import NotFound from '../../components/NotFound';
 import { Route, Switch } from 'react-router-dom';
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount = () => {
     const url = 'https://ebird.org/ws2.0/data/obs/US-CO/recent';
