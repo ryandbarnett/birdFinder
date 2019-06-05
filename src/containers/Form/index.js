@@ -10,19 +10,19 @@ class Form extends Component {
   constructor() {
     super()
     this.state = {
-      species: {
-        value: ''
-      }
+      species: '',
+      start: '',
+      end: '',
     }
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    let { value } = this.state.species;
-    value = value.trim();
+    let { species } = this.state;
+    species = species.trim();
     let speciesCode;
-    if (Object.keys(birds).includes(value)) {
-      speciesCode = birds[value].speciesCode;
+    if (Object.keys(birds).includes(species)) {
+      speciesCode = birds[species].speciesCode;
     }
 
     const baseUrl = 'https://ebird.org/ws2.0/data/obs/US-CO/recent';
@@ -31,25 +31,39 @@ class Form extends Component {
     this.props.fetchSightings(url);
   }
 
+  handleTextInputChange = (e) => {
+    this.setState({species: e});
+  }
+
   handleChange = (e) => {
-    this.setState({species: {value: e}});
+    const {name, value} = e.target;
+    this.setState({[name]: value});
   }
   
   render() {
+    const { handleSubmit, handleChange, handleTextInputChange } = this;
+    const { species, start, end } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <label for="species">Species:</label>
         <TextInput 
-          onChange={this.handleChange}
+          onChange={handleTextInputChange}
           name='species'
           Component='input' 
           placeholder='Species'
-          value={this.state.species.value} 
-          id='species-input' 
-          matchAny={true} 
+          value={species} 
+          id='species' 
+          matchAny={true}
           trigger={''} 
           options={Object.keys(birds)} 
         />
-        <button type='submit'>Submit</button>
+        <label for="region">Region:</label>
+        <input id='region' type='text' name='region' placeholder='Region' />
+        <label for="start">Start date:</label>
+        <input id="start" type="date" name="start" onChange={handleChange} max={end} />
+        <label for="end">End date:</label>
+        <input id="end" type="date" name="end" onChange={handleChange} min={start} />
+        <button type='submit'>Find</button>
       </form>
     );
   }
