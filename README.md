@@ -14,15 +14,17 @@ In the project directory you will need to install dependencies and start the ser
 
 ```npm install```
 
+You will need to get api keys for ebird and google maps and place them in src/utils/ebirdKey.js and src/utils/mapKey.js.
+
+Once you have both api keys run:
+
 ```npm start```
 
 npm start will run the app in a browser using http://localhost:3000/. 
 
 # Home Page
 
-# New Note
-
-# Edit Note
+![HomePage](https://github.com/RyanDBarnett/birdFinder/blob/master/src/media/bird-finder-screenshot.png)
 
 # Wire Frame
 

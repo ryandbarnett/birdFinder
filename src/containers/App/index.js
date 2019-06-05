@@ -28,7 +28,6 @@ class App extends Component {
         <Header />
         {form}
         {map}
-        <Route component={NotFound} />
         {loadingImg}
         {errorMsg}
       </div>
