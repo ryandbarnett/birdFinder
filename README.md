@@ -26,7 +26,7 @@ npm start will run the app in a browser using http://localhost:3000/.
 
 # Wire Frame
 
-![WireFrame](https://github.com/RyanDBarnett/birdFinder/blob/master/src/media/wire-frame.fig)
+![WireFrame](https://github.com/RyanDBarnett/birdFinder/blob/master/src/media/wire-frame.jpg)
 
 # Tech/Frameworks Used
 
