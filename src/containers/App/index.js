@@ -20,6 +20,7 @@ export class App extends Component {
   render() {
     const {isLoading, error} = this.props;
     const errorMsg = error && <div className='error'><h1>Error: {error}</h1></div>
+    const notFound = !isLoading && <Route component={NotFound} />
     const loadingImg = isLoading && !error && <div className='loading-container'><h1>Loading...</h1><img src={loading} alt='map loading' /></div>
     const homeRoute = !isLoading && !error && <Route path='/' exact render={() => (
       <div>
@@ -33,7 +34,7 @@ export class App extends Component {
         <Header />
         <Switch>
           {homeRoute}
-          <Route component={NotFound} />
+          {notFound}
         </Switch>
         {loadingImg}
         {errorMsg}
