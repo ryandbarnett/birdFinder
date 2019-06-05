@@ -21,13 +21,20 @@ class App extends Component {
     const {isLoading, error} = this.props;
     const errorMsg = error && <div className='error'><h1>Error: {error}</h1></div>
     const loadingImg = isLoading && !error && <div className='loading-container'><h1>Loading...</h1><img src={loading} alt='map loading' /></div>
-    const form = !isLoading && !error && <Route exact path='/' component={ Form } />;
-    const map = !isLoading && !error && <Route exact path='/' component={ GoogleMap } />;
+    const homeRoute = !isLoading && !error && <Route path='/' exact render={() => (
+      <div>
+        <Form />
+        <GoogleMap />
+      </div>
+    )} />
+
     return (
       <div className="App">
         <Header />
-        {form}
-        {map}
+        <Switch>
+          {homeRoute}
+          <Route component={NotFound} />
+        </Switch>
         {loadingImg}
         {errorMsg}
       </div>
