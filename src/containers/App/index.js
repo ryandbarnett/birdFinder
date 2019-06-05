@@ -4,7 +4,7 @@ import './App.css';
 import fetchSightings from '../../thunks/fetchSightings/';
 import PropTypes from 'prop-types';
 import Form from '../Form';
-import Map from '../Map';
+import GoogleMap from '../GoogleMap';
 
 class App extends Component {
 
@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div className="App">
         <Form />
-        <Map />
+        <GoogleMap />
       </div>
     );
   }
