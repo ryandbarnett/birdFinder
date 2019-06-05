@@ -1,5 +1,5 @@
 import fetchData from './fetchData';
-import { EBIRD_API_KEY } from './apiKeys';
+import EBIRD_API_KEY from './apiKeys';
 
 describe('fetchData', () => {
   let mockUrl;
