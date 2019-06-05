@@ -26,6 +26,8 @@ npm start will run the app in a browser using http://localhost:3000/.
 
 # Wire Frame
 
+![WireFrame](/src/media/wire-frame.pdf)
+
 # Tech/Frameworks Used
 
 * React
