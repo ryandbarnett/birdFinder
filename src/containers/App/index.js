@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 import Form from '../Form';
 import GoogleMap from '../GoogleMap';
 import Header from '../../components/Header';
-import { Route, NavLink } from 'react-router-dom';
+import NotFound from '../../components/NotFound';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
 
@@ -27,6 +28,7 @@ class App extends Component {
         <Header />
         {form}
         {map}
+        <Route component={NotFound} />
         {loadingImg}
         {errorMsg}
       </div>
