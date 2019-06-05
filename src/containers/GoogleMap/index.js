@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import GoogleMapReact from 'google-map-react';
-import birds from '../../utils/data.js';
+import birds from '../../utils/data';
+import key from '../../utils/mapKey';
 
 class GoogleMap extends Component {
   constructor() {
@@ -13,14 +14,6 @@ class GoogleMap extends Component {
       markers: []
     }
   }
-
-  static defaultProps = {
-    center: {
-      lat: 39.73,
-      lng: -104.99
-    },
-    zoom: 8
-  };
 
   componentDidUpdate = () => {
     const {sightings} = this.props;
@@ -78,7 +71,7 @@ class GoogleMap extends Component {
     return (
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyD-jihDZWqhhM5u_7sEIIWuyoX_3YshsAg' }}
+          bootstrapURLKeys={{ key }}
           defaultCenter={center}
           defaultZoom={zoom}
           onGoogleApiLoaded={(api) => this.handleApiLoaded(api)}
@@ -96,10 +89,4 @@ export const mapStateToProps = (state) => ({
   error: state.error
 });
 
-export const mapDispatchToProps=(dispatch) => ({
-  fetchSightings: (url) => {
-    dispatch(fetchSightings(url))
-  }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(GoogleMap);
+export default connect(mapStateToProps)(GoogleMap);
