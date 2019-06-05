@@ -4,6 +4,7 @@ import './App.css';
 import fetchSightings from '../../thunks/fetchSightings/';
 import PropTypes from 'prop-types';
 import Form from '../Form';
+import Map from '../Map';
 
 class App extends Component {
 
@@ -16,7 +17,7 @@ class App extends Component {
     return (
       <div className="App">
         <Form />
-        <h1>Hello!</h1>
+        <Map />
       </div>
     );
   }
