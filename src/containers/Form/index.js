@@ -48,7 +48,7 @@ class Form extends Component {
     return (
       <form className='Form' onSubmit={handleSubmit}>
         <div className='input-container'>
-          <label for="species">Species</label>
+          <label htmlFor="species">Species</label>
           <TextInput 
             onChange={handleTextInputChange}
             name='species'
@@ -61,24 +61,24 @@ class Form extends Component {
           />
         </div>
         <div className='input-container'>
-          <label for="region">Region</label>
+          <label htmlFor="region">Region</label>
           <input id='region' type='text' name='region' onChange={handleChange} />
         </div>
         <div className='input-container'>
-          <label for="start">Start date</label>
+          <label htmlFor="start">Start date</label>
           <input id="start" type="date" name="start" onChange={handleChange} max={end} />
         </div>
         <div className='input-container'>
-          <label for="end">End date</label>
+          <label htmlFor="end">End date</label>
           <input id="end" type="date" name="end" onChange={handleChange} min={start} />
         </div>
         <div className='checkboxes-container'>
           <div className='checkbox-container'>
-            <label for="recent">Show Recent:</label>
+            <label htmlFor="recent">Show Recent:</label>
             <input id="recent" type="checkbox" name="recent" />
           </div>
           <div className='checkbox-container'>
-            <label for="notable">Show Notable:</label>
+            <label htmlFor="notable">Show Notable:</label>
             <input id="notable" type="checkbox" name="notable" />
           </div>
         </div>

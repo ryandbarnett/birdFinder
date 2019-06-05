@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
+import loading from '../../media/bird-loading.gif';
 import fetchSightings from '../../thunks/fetchSightings/';
 import PropTypes from 'prop-types';
 import Form from '../Form';
 import GoogleMap from '../GoogleMap';
 import Header from '../../components/Header';
+import NotFound from '../../components/NotFound';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
 
@@ -15,11 +18,19 @@ class App extends Component {
   }
 
   render() {
+    const {isLoading, error} = this.props;
+    const errorMsg = error && <div className='error'><h1>Error: {error}</h1></div>
+    const loadingImg = isLoading && !error && <div className='loading-container'><h1>Loading...</h1><img src={loading} alt='map loading' /></div>
+    const form = !isLoading && !error && <Route exact path='/' component={ Form } />;
+    const map = !isLoading && !error && <Route exact path='/' component={ GoogleMap } />;
     return (
       <div className="App">
         <Header />
-        <Form />
-        <GoogleMap />
+        {form}
+        {map}
+        <Route component={NotFound} />
+        {loadingImg}
+        {errorMsg}
       </div>
     );
   }
