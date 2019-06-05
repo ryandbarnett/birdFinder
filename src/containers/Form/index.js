@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import 'react-autocomplete-input/dist/bundle.css';
 import './Form.css';
 
-class Form extends Component {
+export class Form extends Component {
   constructor() {
     super()
     this.state = {
