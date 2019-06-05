@@ -34,7 +34,7 @@ describe('Form', () => {
   });
 
   describe('mapDispatchToProps', () => {
-    it('calls dispatch with a fetchSightings action when componentDidMount is called', () => {
+    it('calls dispatch with a fetchSightings action', () => {
       const mockDispatch = jest.fn();
       const mockUrl = 'https://testUrl.com';
       const actionToDispatch = fetchSightings(mockUrl);
