@@ -37,4 +37,7 @@ npm start will run the app in a browser using http://localhost:3000/.
 * fetch API
 * Testing with Enzyme & Jest
 * Router
-* Thunks 
+* Thunks
+
+# Contributors
+[Ryan Barnett](https://github.com/RyanDBarnett)
