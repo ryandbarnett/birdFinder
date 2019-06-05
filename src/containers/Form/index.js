@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import fetchSightings from '../../thunks/fetchSightings/';
-import { birds } from '../../utils/data.js';
+import birds from '../../utils/data.js';
 import TextInput from 'react-autocomplete-input';
 import PropTypes from 'prop-types';
 import 'react-autocomplete-input/dist/bundle.css';

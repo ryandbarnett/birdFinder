@@ -1,4 +1,4 @@
-const birds = {
+export default {
   'American Avocet': { iconColor: 'fe612d', speciesCode: 'ameavo' },
   'Yellow-headed Blackbird': { iconColor: '654d65', speciesCode: 'yehbla' },
   'American Coot': { iconColor: '44a61b', speciesCode: 'y00475' },
@@ -419,5 +419,3 @@ const birds = {
   'Greater White-fronted Goose': { iconColor: 'b05291', speciesCode: 'gwfgoo' },
   'Steller\'s Jay x Woodhouse\'s Scrub-Jay (hybrid)': { iconColor: '320729', speciesCode: 'x00891' },
 };
-
-export default birds;
