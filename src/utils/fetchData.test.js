@@ -1,5 +1,5 @@
-import fetchData from './fetchData.js';
-import { EBIRD_API_KEY } from './apiKeys.js';
+import fetchData from './fetchData';
+import EBIRD_API_KEY from './apiKeys';
 
 describe('fetchData', () => {
   let mockUrl;
@@ -9,12 +9,10 @@ describe('fetchData', () => {
     mockUrl = 'https://ebird.org/ws2.0/data/obs/US-CO/recent';
     mockResponse = ['bird1', 'bird2'];
 
-    window.fetch = jest.fn().mockImplementation(() => {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockResponse)
-      });
-    });
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(mockResponse),
+    }));
   });
 
   it('should be called with correct params', () => {
@@ -23,9 +21,9 @@ describe('fetchData', () => {
       {
         method: 'GET',
         headers: {
-          'x-ebirdapitoken': EBIRD_API_KEY
-        }
-      }
+          'x-ebirdapitoken': EBIRD_API_KEY,
+        },
+      },
     ];
 
     fetchData(mockUrl);
@@ -40,13 +38,11 @@ describe('fetchData', () => {
   });
 
   it('should return an error if status is not ok', async () => {
-    window.fetch = jest.fn().mockImplementation(() => {
-      return Promise.resolve({
-        ok: false,
-        statusText: 'Error Message'
-      });
-    });
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: false,
+      statusText: 'Error Message',
+    }));
 
-    await expect(fetchData()).rejects.toEqual(Error('Error Message'))
+    await expect(fetchData()).rejects.toEqual(Error('Error Message'));
   });
 });
