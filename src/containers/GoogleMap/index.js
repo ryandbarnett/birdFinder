@@ -6,6 +6,7 @@ import key from '../../utils/mapKey';
 import './Map.css';
 import { Route, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import birdLogo from '../../media/red-bird-logo.png';
 
 export class GoogleMap extends Component {
   constructor() {
@@ -38,7 +39,7 @@ export class GoogleMap extends Component {
         position,
         map,
         icon: ' ',
-        labelContent: "<i class='fa fa-dove fa-lg'></i>",
+        labelContent: `<img src='${birdLogo}' />`,
         labelStyle: {color: '#' + birds[comName].iconColor, opacity: 1},
         labelClass: "labels",
         title: comName + ' (' + sciName + ')',
