@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './App.css';
+import loading from '../../media/bird-loading.gif';
 import fetchSightings from '../../thunks/fetchSightings/';
 import PropTypes from 'prop-types';
 import Form from '../Form';
@@ -15,11 +16,16 @@ class App extends Component {
   }
 
   render() {
+    const {isLoading} = this.props;
+    const loadingImg = isLoading && <div className='loading-container'><h1>Loading...</h1><img src={loading} alt='map loading' /></div>
+    const form = !isLoading && <Form />;
+    const map = !isLoading && <GoogleMap />;
     return (
       <div className="App">
         <Header />
-        <Form />
-        <GoogleMap />
+        {form}
+        {map}
+        {loadingImg}
       </div>
     );
   }

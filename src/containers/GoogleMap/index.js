@@ -4,6 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import birds from '../../utils/data';
 import key from '../../utils/mapKey';
 import './Map.css';
+import { Route, NavLink } from 'react-router-dom';
 
 class GoogleMap extends Component {
   constructor() {
@@ -36,10 +37,10 @@ class GoogleMap extends Component {
         position,
         map,
         icon: ' ',
-        labelContent: '<i class="fa fa-dove fa-lg"></i>',
+        labelContent: "<i class='fa fa-dove fa-lg'></i>",
         labelStyle: {color: '#' + birds[comName].iconColor, opacity: 1},
         labelClass: "labels",
-        title: comName + ' (' + sciName + ')'
+        title: comName + ' (' + sciName + ')',
       });
     });
   }

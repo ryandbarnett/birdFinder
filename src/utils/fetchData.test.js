@@ -1,5 +1,5 @@
 import fetchData from './fetchData';
-import EBIRD_API_KEY from './apiKeys';
+import key from './ebirdKey';
 
 describe('fetchData', () => {
   let mockUrl;
@@ -21,7 +21,7 @@ describe('fetchData', () => {
       {
         method: 'GET',
         headers: {
-          'x-ebirdapitoken': EBIRD_API_KEY,
+          'x-ebirdapitoken': key,
         },
       },
     ];
