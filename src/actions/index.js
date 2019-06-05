@@ -1,14 +1,14 @@
-export const setSightings = (sightings) => ({
+export const setSightings = sightings => ({
   type: 'SET_SIGHTINGS',
-  sightings
+  sightings,
 });
 
-export const isLoading = (bool) => ({
+export const isLoading = bool => ({
   type: 'IS_LOADING',
-  isLoading: bool
+  isLoading: bool,
 });
-  
-export const hasErrored = (message) => ({
+
+export const hasErrored = message => ({
   type: 'HAS_ERRORED',
-  message
+  message,
 });
