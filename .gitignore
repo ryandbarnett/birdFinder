@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # api keys
-src/utils/apiKeys.js
+src/utils/ebirdKey.js
+src/utils/mapKey.js
 
 # dependencies
 /node_modules
