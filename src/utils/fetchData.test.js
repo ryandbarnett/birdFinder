@@ -9,12 +9,10 @@ describe('fetchData', () => {
     mockUrl = 'https://ebird.org/ws2.0/data/obs/US-CO/recent';
     mockResponse = ['bird1', 'bird2'];
 
-    window.fetch = jest.fn().mockImplementation(() => {
-      return Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockResponse),
-      });
-    });
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(mockResponse),
+    }));
   });
 
   it('should be called with correct params', () => {
@@ -40,12 +38,10 @@ describe('fetchData', () => {
   });
 
   it('should return an error if status is not ok', async () => {
-    window.fetch = jest.fn().mockImplementation(() => {
-      return Promise.resolve({
-        ok: false,
-        statusText: 'Error Message',
-      });
-    });
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      ok: false,
+      statusText: 'Error Message',
+    }));
 
     await expect(fetchData()).rejects.toEqual(Error('Error Message'));
   });
