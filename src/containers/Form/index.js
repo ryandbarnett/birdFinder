@@ -5,24 +5,26 @@ import birds from '../../utils/data.js';
 import TextInput from 'react-autocomplete-input';
 import PropTypes from 'prop-types';
 import 'react-autocomplete-input/dist/bundle.css';
+import './Form.css';
 
 class Form extends Component {
   constructor() {
     super()
     this.state = {
-      species: {
-        value: ''
-      }
+      species: '',
+      region: '',
+      start: '',
+      end: '',
     }
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    let { value } = this.state.species;
-    value = value.trim();
+    let { species } = this.state;
+    species = species.trim();
     let speciesCode;
-    if (Object.keys(birds).includes(value)) {
-      speciesCode = birds[value].speciesCode;
+    if (Object.keys(birds).includes(species)) {
+      speciesCode = birds[species].speciesCode;
     }
 
     const baseUrl = 'https://ebird.org/ws2.0/data/obs/US-CO/recent';
@@ -31,25 +33,58 @@ class Form extends Component {
     this.props.fetchSightings(url);
   }
 
+  handleTextInputChange = (e) => {
+    this.setState({species: e});
+  }
+
   handleChange = (e) => {
-    this.setState({species: {value: e}});
+    const {name, value} = e.target;
+    this.setState({[name]: value});
   }
   
   render() {
+    const { handleSubmit, handleChange, handleTextInputChange } = this;
+    const { species, start, end } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <TextInput 
-          onChange={this.handleChange}
-          name='species'
-          Component='input' 
-          placeholder='Species'
-          value={this.state.species.value} 
-          id='species-input' 
-          matchAny={true} 
-          trigger={''} 
-          options={Object.keys(birds)} 
-        />
-        <button type='submit'>Submit</button>
+      <form className='Form' onSubmit={handleSubmit}>
+        <div className='input-container'>
+          <label for="species">Species</label>
+          <TextInput 
+            onChange={handleTextInputChange}
+            name='species'
+            Component='input' 
+            value={species} 
+            id='species' 
+            matchAny={true}
+            trigger={''} 
+            options={Object.keys(birds)} 
+          />
+        </div>
+        <div className='input-container'>
+          <label for="region">Region</label>
+          <input id='region' type='text' name='region' onChange={handleChange} />
+        </div>
+        <div className='input-container'>
+          <label for="start">Start date</label>
+          <input id="start" type="date" name="start" onChange={handleChange} max={end} />
+        </div>
+        <div className='input-container'>
+          <label for="end">End date</label>
+          <input id="end" type="date" name="end" onChange={handleChange} min={start} />
+        </div>
+        <div className='checkboxes-container'>
+          <div className='checkbox-container'>
+            <label for="recent">Show Recent:</label>
+            <input id="recent" type="checkbox" name="recent" />
+          </div>
+          <div className='checkbox-container'>
+            <label for="notable">Show Notable:</label>
+            <input id="notable" type="checkbox" name="notable" />
+          </div>
+        </div>
+        <div className='submit-btn-container'>
+          <button id='submit-btn' type='submit'>Find</button>
+        </div>
       </form>
     );
   }

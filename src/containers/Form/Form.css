@@ -1,0 +1,68 @@
+.Form {
+  background: #904100;
+  border: 2px solid #F59443;
+  display: flex;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  flex-wrap: wrap;
+  margin: 20px auto;
+  padding: 20px;
+  width: 90%;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  width: 50%;
+}
+
+.input-container label {
+  margin-bottom: 10px;
+}
+
+.input-container input {
+  background: #F59443;
+  border: none;
+  box-shadow: inset 0 4px 4px rgba(0,0,0,0.25);
+  color: #904100;
+  font-size: 24px;
+  height: 40px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.checkboxes-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  width: 50%;
+}
+
+.checkbox-container {
+  align-items: center;
+  display: flex;
+}
+
+label {
+  color: #EB7411;
+  font-size: 24px;
+  line-height: 1;
+  padding-right: 15px;
+}
+
+.submit-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  width: 50%;
+}
+
+#submit-btn {
+  background: #900000;
+  border: 2px solid #FF6E6E;
+  color: #FF6E6E;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  font-size: 24px;
+  width: 150px;
+}
