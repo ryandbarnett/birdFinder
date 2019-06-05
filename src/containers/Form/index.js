@@ -5,12 +5,14 @@ import birds from '../../utils/data.js';
 import TextInput from 'react-autocomplete-input';
 import PropTypes from 'prop-types';
 import 'react-autocomplete-input/dist/bundle.css';
+import './Form.css';
 
 class Form extends Component {
   constructor() {
     super()
     this.state = {
       species: '',
+      region: '',
       start: '',
       end: '',
     }
@@ -44,26 +46,45 @@ class Form extends Component {
     const { handleSubmit, handleChange, handleTextInputChange } = this;
     const { species, start, end } = this.state;
     return (
-      <form onSubmit={handleSubmit}>
-        <label for="species">Species:</label>
-        <TextInput 
-          onChange={handleTextInputChange}
-          name='species'
-          Component='input' 
-          placeholder='Species'
-          value={species} 
-          id='species' 
-          matchAny={true}
-          trigger={''} 
-          options={Object.keys(birds)} 
-        />
-        <label for="region">Region:</label>
-        <input id='region' type='text' name='region' placeholder='Region' />
-        <label for="start">Start date:</label>
-        <input id="start" type="date" name="start" onChange={handleChange} max={end} />
-        <label for="end">End date:</label>
-        <input id="end" type="date" name="end" onChange={handleChange} min={start} />
-        <button type='submit'>Find</button>
+      <form className='Form' onSubmit={handleSubmit}>
+        <div className='input-container'>
+          <label for="species">Species</label>
+          <TextInput 
+            onChange={handleTextInputChange}
+            name='species'
+            Component='input' 
+            value={species} 
+            id='species' 
+            matchAny={true}
+            trigger={''} 
+            options={Object.keys(birds)} 
+          />
+        </div>
+        <div className='input-container'>
+          <label for="region">Region</label>
+          <input id='region' type='text' name='region' onChange={handleChange} />
+        </div>
+        <div className='input-container'>
+          <label for="start">Start date</label>
+          <input id="start" type="date" name="start" onChange={handleChange} max={end} />
+        </div>
+        <div className='input-container'>
+          <label for="end">End date</label>
+          <input id="end" type="date" name="end" onChange={handleChange} min={start} />
+        </div>
+        <div className='checkboxes-container'>
+          <div className='checkbox-container'>
+            <label for="recent">Show Recent:</label>
+            <input id="recent" type="checkbox" name="recent" />
+          </div>
+          <div className='checkbox-container'>
+            <label for="notable">Show Notable:</label>
+            <input id="notable" type="checkbox" name="notable" />
+          </div>
+        </div>
+        <div className='submit-btn-container'>
+          <button id='submit-btn' type='submit'>Find</button>
+        </div>
       </form>
     );
   }
