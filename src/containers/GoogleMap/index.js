@@ -7,7 +7,7 @@ import './Map.css';
 import { Route, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-class GoogleMap extends Component {
+export class GoogleMap extends Component {
   constructor() {
     super()
     this.state = {
